@@ -14,16 +14,16 @@ use Illuminate\Support\Facades\Route;
 
 // Route::apiResource('/users', UserController::class);
 
-Route::post('/login', [AuthController::class, 'login']);
-Route::post('/register', [AuthController::class, 'register']);
-Route::post('/logout', [AuthController::class, 'logout']);
+Route::post('/user/login', [AuthController::class, 'login']);
+Route::post('/user/register', [AuthController::class, 'register']);
+Route::post('/user/logout', [AuthController::class, 'logout']);
 Route::get('/users', [UserController::class, 'index']);
 
-Route::get('/pesan', [PesanController::class, 'index']);
-Route::post('/pesan', [PesanController::class, 'store']);
-Route::get('/pesan/{id}', [PesanController::class, 'show']);
-Route::put('/pesan/{id}', [PesanController::class, 'update']);
-Route::delete('/pesan/{id}', [PesanController::class, 'destroy']);
+Route::get('/get_pesan', [PesanController::class, 'index']);
+Route::post('/kirim_pesan', [PesanController::class, 'store']);
+Route::get('/get_pesan_id/{id}', [PesanController::class, 'show']);
+Route::put('/update_pesan/{id}', [PesanController::class, 'update']);
+Route::delete('/hapus_pesan/{id}', [PesanController::class, 'destroy']);
 
-Route::get('/jawaban', [JawabanController::class, 'getPesanJawaban']);
-Route::post('/jawaban/{id}', [JawabanController::class, 'sendMessage']);
+Route::get('/get_pesan_jawaban', [JawabanController::class, 'getPesanJawaban']);
+Route::post('/kirim_jawaban/{id}', [JawabanController::class, 'sendMessage']);
