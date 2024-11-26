@@ -47,7 +47,8 @@ class AuthController extends Controller
         $field = Validator::make($request->all(), [
             'username' => 'required',
             'email' => 'required|email|unique:users',
-            'password' => 'required'
+            'password' => 'required',
+            'role_id' => 'required'
         ]);
 
         if ($field->fails()) {
@@ -59,7 +60,8 @@ class AuthController extends Controller
         $user = User::create([
             'username' => $request->username,
             'email' => $request->email,
-            'password' => Hash::make($request->password)
+            'password' => Hash::make($request->password),
+            'role_id' => $request->role_id ?? 2
         ]);
 
         return response()->json([
