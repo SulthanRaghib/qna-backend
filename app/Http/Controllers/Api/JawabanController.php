@@ -35,7 +35,7 @@ class JawabanController extends Controller
         ]);
 
         return response()->json([
-            'message' => 'Jawaban berhasil ditambahkan',
+            'message' => 'Jawaban untuk pesan ID: ' . $id . ' berhasil dikirim',
             'data' => $jawaban
         ], 201);
     }
@@ -48,6 +48,7 @@ class JawabanController extends Controller
         $data = [];
 
         foreach ($pesan as $key => $value) {
+            $data[$key]['id'] = $value->id;
             $data[$key]['subjek'] = $value->subjek;
             $data[$key]['pertanyaan'] = $value->pertanyaan;
             $data[$key]['tanggal_dibuat'] = Date::parse($value->tanggal_dibuat)->format('d F Y H:i:s');
@@ -58,6 +59,31 @@ class JawabanController extends Controller
         return response()->json([
             'message' => 'Berhasil menampilkan data',
             'data' => $data
+        ], 200);
+    }
+
+    public function updatePesanJawaban(Request $request, $id)
+    {
+        $findPesan = Pesan::find($id);
+        $findJawaban = Jawaban::where('pesan_id', $id)->first();
+
+        $request->validate([
+            'jawaban' => 'required'
+        ]);
+
+        if ($findPesan->status_id == 2) {
+            return response()->json([
+                'message' => 'Pesan ID: ' . $id . ' belum dijawab, mohon kirim Jawabannya dulu woi'
+            ], 400);
+        }
+
+        $findJawaban->update([
+            'jawaban' => $request->jawaban
+        ]);
+
+        return response()->json([
+            'message' => 'Jawaban untuk pesan ID: ' . $id . ' berhasil diupdate',
+            'data' => $findJawaban
         ], 200);
     }
 }

@@ -16,7 +16,7 @@ class PesanController extends Controller
         $data = PesanResource::collection($pesans);
 
         return response()->json([
-            'message' => 'Berhasil menampilkan data',
+            'message' => 'Berhasil menampilkan data Pesan',
             'data' => $data
         ], 200);
     }
@@ -45,7 +45,7 @@ class PesanController extends Controller
         $data = new PesanResource($pesan);
 
         return response()->json([
-            'message' => 'Data berhasil ditambahkan',
+            'message' => 'Data Pesan berhasil ditambahkan',
             'data' => $data
         ], 201);
     }
@@ -56,14 +56,14 @@ class PesanController extends Controller
 
         if (!$pesan) {
             return response()->json([
-                'message' => 'Data tidak ditemukan'
+                'message' => 'Data Pesan tidak ditemukan'
             ], 404);
         }
 
         $data = new PesanResource($pesan);
 
         return response()->json([
-            'message' => 'Berhasil menampilkan data ' . $id,
+            'message' => 'Berhasil menampilkan data pesan ID: ' . $id,
             'data' => $data
         ], 200);
     }
@@ -85,7 +85,7 @@ class PesanController extends Controller
 
         if (!$pesan) {
             return response()->json([
-                'message' => 'Data tidak ditemukan'
+                'message' => 'Data pesan ID: ' . $id . ' tidak ditemukan'
             ], 404);
         }
 
@@ -97,7 +97,7 @@ class PesanController extends Controller
         $data = new PesanResource($pesan);
 
         return response()->json([
-            'message' => 'Data berhasil diubah ' . $id,
+            'message' => 'Data pesan dengan ID: ' . $id . ' berhasil diupdate',
             'data' => $data
         ], 200);
     }
@@ -115,7 +115,7 @@ class PesanController extends Controller
         $pesan->delete();
 
         return response()->json([
-            'message' => 'Data berhasil dihapus ' . $id
+            'message' => 'Data pesan dengan ID: ' . $id . ' berhasil dihapus'
         ], 200);
     }
 }
