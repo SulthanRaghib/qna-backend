@@ -31,7 +31,8 @@ class AuthController extends Controller
             ], 401);
         }
 
-        $token = $user->createToken($user->username)->plainTextToken;
+        // beri waktu token 1 jam
+        $token = $user->createToken($user->username, ['role:' . $user->role_id], now()->addHour(1))->plainTextToken;
 
         return response()->json([
             'message' => 'Berhasil login',
