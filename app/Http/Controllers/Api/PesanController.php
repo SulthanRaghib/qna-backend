@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\PesanResource;
+use App\Models\Jawaban;
 use App\Models\Pesan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -105,17 +106,22 @@ class PesanController extends Controller
     public function destroy($id)
     {
         $pesan = Pesan::find($id);
+        $jawaban = Jawaban::where('pesan_id', $id)->get();
 
         if (!$pesan) {
             return response()->json([
-                'message' => 'Data tidak ditemukan'
+                'message' => 'Data pesan ID: ' . $id . ' tidak ditemukan'
             ], 404);
+        }
+
+        if ($jawaban) {
+            $jawaban->each->delete();
         }
 
         $pesan->delete();
 
         return response()->json([
-            'message' => 'Data pesan dengan ID: ' . $id . ' berhasil dihapus'
+            'message' => 'Data pesan ID: ' . $id . ' berhasil dihapus'
         ], 200);
     }
 }
