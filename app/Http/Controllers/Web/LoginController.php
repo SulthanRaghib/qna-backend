@@ -13,4 +13,24 @@ class LoginController extends Controller
             'title' => 'Login'
         ]);
     }
+
+    public function login(Request $request)
+    {
+        $validateData = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required'
+        ], [
+            'email.required' => 'Email tidak boleh kosong',
+            'email.email' => 'Email tidak valid',
+            'password.required' => 'Password tidak boleh kosong'
+        ]);
+
+        $credentials = $request->only('email', 'password');
+
+        if (auth()->attempt($credentials)) {
+            return redirect()->route('dashboard');
+        } else {
+            return redirect()->back()->with('error', 'Email atau password salah');
+        }
+    }
 }

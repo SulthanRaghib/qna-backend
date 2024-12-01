@@ -7,6 +7,10 @@
     font-size: 36px;
 }
 
+.fz-60 {
+    font-size: 60px;
+}
+
 .fz-16 {
     font-size: 16px;
 }
@@ -22,4 +26,35 @@
 .card-text-message {
     color: #667085;
     font-size: 16px;
+}
+
+/* Pastikan gambar background memenuhi area */
+.col-6 img {
+    object-fit: cover;
+    height: 100vh;
+    width: 100%;
+}
+
+/* Konten teks tengah */
+.position-absolute.top-50 {
+    padding-bottom: 150px; /* Beri ruang untuk gambar user di bawah */
+}
+
+/* Gambar user */
+.position-absolute.bottom-0 img {
+    max-width: 150px; /* Batasi ukuran gambar */
+    height: auto; /* Jaga proporsi */
+}
+
+/* Responsivitas */
+@media (max-width: 768px) {
+    .fz-60 {
+        font-size: 1.5rem; /* Kurangi ukuran font untuk layar kecil */
+    }
+    .position-absolute.top-50 {
+        padding-bottom: 100px; /* Kurangi padding pada layar kecil */
+    }
+    .position-absolute.bottom-0 img {
+        max-width: 100px; /* Kurangi ukuran gambar untuk layar kecil */
+    }
 }
