@@ -42,7 +42,7 @@ class PesanController extends Controller
 
     public function get_semua_pesan()
     {
-        $pesan = Pesan::with('status', 'user')->paginate(10);
+        $pesan = Pesan::with('status', 'user')->orderBy('tanggal_dibuat', 'desc')->paginate(10);
         $jawaban = Jawaban::with('pesan')->get();
 
         $data = [];
@@ -51,18 +51,16 @@ class PesanController extends Controller
             $data[$key]['id'] = $value->id;
             $data[$key]['subjek'] = $value->subjek;
             $data[$key]['pertanyaan'] = $value->pertanyaan;
-            $data[$key]['tanggal_dibuat'] = $value->tanggal_dibuat;
-            $data[$key]['tanggal_dibuat_formated'] = Date::parse($value->tanggal_dibuat)->format('d F Y H:i:s');
+            $data[$key]['tanggal_dibuat'] = Date::parse($value->tanggal_dibuat)->format('d F Y H:i:s');
             $data[$key]['jawaban'] = $jawaban->where('pesan_id', $value->id)->first()->jawaban ?? "Belum Dibalas";
             $data[$key]['user'] = $value->user->username;
         }
 
-        // collect data berdasarkan tanggal terbaru
-        $data = collect($data)->sortByDesc('tanggal_dibuat')->values()->all();
 
         return view('pesan.semua_pesan', [
             'title' => 'Semua Pesan',
             'data' => $data,
-        ])->with('paginator', $pesan->withQueryString());
+            'paginator' => $pesan->withQueryString()
+        ]);
     }
 }

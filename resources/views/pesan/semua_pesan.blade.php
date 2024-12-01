@@ -24,7 +24,7 @@
                     <td>{{ $item['subjek'] }}</td>
                     <td>{{ $item['pertanyaan'] }}</td>
                     <td>{{ $item['jawaban'] }}</td>
-                    <td>{{ $item['tanggal_dibuat_formated'] }}</td>
+                    <td>{{ $item['tanggal_dibuat'] }}</td>
                 </tr>
             @endforeach
 
