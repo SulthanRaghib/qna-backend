@@ -1,10 +1,11 @@
 @include('layout.header')
 @include('layout.sidebar')
 
-<div class="content-wrapper">
-    <section class="content">
+<div class="container">
+    <div class="p-3">
         @yield('content')
-    </section>
+    </div>
 </div>
+
 
 @include('layout.footer')

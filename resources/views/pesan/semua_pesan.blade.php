@@ -7,7 +7,7 @@
         {{ $paginator->links('vendor.pagination.custom') }}
     </div>
 
-    <table class="table">
+    <table class="table table-hover">
         <thead>
             <tr>
                 <th scope="col">NO</th>
@@ -21,9 +21,14 @@
             @foreach ($data as $key => $item)
                 <tr>
                     <th scope="row">{{ $paginator->firstItem() + $key }}</th>
-                    <td>{{ $item['subjek'] }}</td>
+                    <td class="fw-bold">{{ $item['subjek'] }}</td>
                     <td>{{ $item['pertanyaan'] }}</td>
-                    <td>{{ $item['jawaban'] }}</td>
+                    <td>
+                        @if ($item['jawaban'] == 'Belum Dibalas')
+                            <span class="badge bg-danger">Belum dijawab</span>
+                        @else
+                            {{ $item['jawaban'] }}
+                        @endif
                     <td>{{ $item['tanggal_dibuat'] }}</td>
                 </tr>
             @endforeach

@@ -28,6 +28,36 @@
     font-size: 16px;
 }
 
+.bg-success-custom {
+    background: #ebfff1;
+}
+
+.bg-secondary-custom {
+    background: #e7e6ea;
+}
+
+tr td {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.fixed-bottom-right .modal-dialog {
+    position: fixed;
+    bottom: 20px; /* Jarak dari bawah */
+    right: 20px; /* Jarak dari kanan */
+    margin: 0;
+    width: 100%;
+}
+
+.fixed-bottom-right .modal-content {
+    border-radius: 12px; /* Opsional: untuk membuat sudut melengkung */
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2); /* Opsional: menambahkan bayangan */
+}
+
+.fixed-bottom-right .modal-backdrop {
+    display: none; /* Menonaktifkan backdrop bawaan Bootstrap */
+}
+
 /* Pastikan gambar background memenuhi area */
 .col-6 img {
     object-fit: cover;

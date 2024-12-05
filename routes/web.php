@@ -12,5 +12,10 @@ Route::get('/semua-pesan', [PesanController::class, 'get_semua_pesan'])->name('p
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'login'])->name('login.store');
+Route::post('/register', [LoginController::class, 'register'])->name('register');
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+Route::post('/reply', [PesanController::class, 'kirim_reply'])->name('pesan.reply.submit');
+Route::put('/update-pesan/{id}', [PesanController::class, 'update'])->name('pesan.update');
+Route::delete('/hapus-pesan/{id}', [PesanController::class, 'hapus_pesan'])->name('pesan.delete');

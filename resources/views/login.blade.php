@@ -10,6 +10,18 @@
         })
     </script>
 @endif
+@if (session('success'))
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil',
+            text: '{{ session('success') }}',
+            showConfirmButton: false,
+            timer: 2000
+        })
+    </script>
+@endif
+
 <div class="d-flex flex-row">
     <div class="col-6 position-relative">
         <!-- Gambar Background -->

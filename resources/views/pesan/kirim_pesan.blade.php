@@ -32,7 +32,7 @@
                 <div class="mb-4">
                     <label for="pertanyaan" class="form-label fw-medium">Pertanyaan</label>
                     <textarea class="form-control pt-2" id="pertanyaan" name="pertanyaan" placeholder="tulis pesanmu disini"
-                        style="resize: none; height:128px"></textarea>
+                        style="resize: none;" rows="5"></textarea>
                     @error('pertanyaan')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
