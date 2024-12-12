@@ -25,7 +25,6 @@ class PesanController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'subjek' => 'required',
             'pertanyaan' => 'required',
         ]);
 
@@ -36,7 +35,7 @@ class PesanController extends Controller
         }
 
         $pesan = Pesan::create([
-            'subjek' => $request->subjek,
+            'subjek' => 'No Subject' ?? $request->subjek,
             'pertanyaan' => $request->pertanyaan,
             'tanggal_dibuat' => now(),
             'status_id' => 2,

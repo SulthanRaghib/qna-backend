@@ -42,23 +42,35 @@ class JawabanController extends Controller
 
     public function getPesanJawaban()
     {
-        $pesan = Pesan::with('status', 'user')->get();
-        $jawaban = Jawaban::with('pesan')->get();
+        $sort = request()->input('sort', 'desc');
 
-        $data = [];
+        $pesan = Pesan::with('status', 'user')->orderBy('tanggal_dibuat', $sort)->paginate(10);
 
-        foreach ($pesan as $key => $value) {
-            $data[$key]['id'] = $value->id;
-            $data[$key]['subjek'] = $value->subjek;
-            $data[$key]['pertanyaan'] = $value->pertanyaan;
-            $data[$key]['tanggal_dibuat'] = Date::parse($value->tanggal_dibuat)->format('d F Y H:i:s');
-            $data[$key]['jawaban'] = $jawaban->where('pesan_id', $value->id)->first()->jawaban ?? "Belum Dibalas";
-            $data[$key]['user'] = $value->user->username;
-        }
+        $jawaban = Jawaban::all();
+
+        $data = $pesan->map(function ($value) use ($jawaban) {
+            return [
+                'id' => $value->id,
+                'subjek' => $value->subjek,
+                'pertanyaan' => $value->pertanyaan,
+                'tanggal_dibuat' => Date::parse($value->tanggal_dibuat)->format('d/m/Y H:i'),
+                'jawaban' => $jawaban->where('pesan_id', $value->id)->first()->jawaban ?? 'Belum Dibalas',
+                'status' => $value->status->name,
+                'user' => $value->user->username,
+            ];
+        });
 
         return response()->json([
             'message' => 'Berhasil menampilkan data',
-            'data' => $data
+            'data' => $data,
+            'pagination' => [
+                'current_page' => $pesan->currentPage(),
+                'last_page' => $pesan->lastPage(),
+                'per_page' => $pesan->perPage(),
+                'total' => $pesan->total(),
+                'next_page_url' => $pesan->nextPageUrl(),
+                'prev_page_url' => $pesan->previousPageUrl()
+            ]
         ], 200);
     }
 
