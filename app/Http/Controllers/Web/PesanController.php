@@ -69,7 +69,7 @@ class PesanController extends Controller
         Jawaban::where('pesan_id', $id)->delete();
         Pesan::where('id', $id)->delete();
 
-        return redirect()->route('dashboard')->with('success-delete', 'Pesan ID ' . $id . ' berhasil dihapus');
+        return redirect()->route('kontak.masuk')->with('success-delete', 'Pesan ID ' . $id . ' berhasil dihapus');
     }
 
     public function kirim_reply(Request $request)
@@ -95,9 +95,9 @@ class PesanController extends Controller
         if ($getIDPesan) {
             Jawaban::create($insertJawaban);
             Pesan::where('id', $request->pesan_id)->update(['status_id' => 1]);
-            return redirect()->route('dashboard')->with('success-reply', 'Jawaban berhasil dikirim');
+            return redirect()->route('kontak.masuk')->with('success-reply', 'Jawaban berhasil dikirim');
         } else {
-            return redirect()->route('dashboard')->with('error', 'Pesan tidak ditemukan');
+            return redirect()->route('kontak.masuk')->with('error', 'Pesan tidak ditemukan');
         }
     }
 
@@ -126,6 +126,6 @@ class PesanController extends Controller
         ]);
 
         // Redirect dengan pesan sukses
-        return redirect()->route('dashboard')->with('success-update', 'Pesan berhasil diperbarui!');
+        return redirect()->route('kontak.masuk')->with('success-update', 'Pesan berhasil diperbarui!');
     }
 }

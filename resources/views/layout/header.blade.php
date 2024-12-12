@@ -19,6 +19,9 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
+        {{-- https://chartscss.org/docs/installation/ --}}
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/charts.css/dist/charts.min.css">
+
         <style>
             body {
                 font-family: 'Roboto', sans-serif;

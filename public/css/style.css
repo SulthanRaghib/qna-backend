@@ -36,6 +36,10 @@
     background: #e7e6ea;
 }
 
+.bg-ijo-linear {
+    background: linear-gradient(180deg, #114038 18%, #2ca691 100%);
+}
+
 tr td {
     padding: 0 !important;
     margin: 0 !important;

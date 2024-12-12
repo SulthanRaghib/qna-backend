@@ -35,4 +35,11 @@ class DashboardController extends Controller
             'sort' => $sort
         ]);
     }
+
+    public function statistik()
+    {
+        return view('statistik', [
+            'title' => 'Statistik'
+        ]);
+    }
 }

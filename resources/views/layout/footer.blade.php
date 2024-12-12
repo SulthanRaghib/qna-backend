@@ -9,15 +9,11 @@
 </div>
 </div>
 <!--   Core JS Files   -->
-<script src="{{ url('assets-dashboard/js/core/jquery-3.7.1.min.js') }}"></script>
-<script src="{{ url('assets-dashboard/js/core/popper.min.js') }}"></script>
 <script src="{{ url('assets-dashboard/js/core/bootstrap.min.js') }}"></script>
 
 <!-- jQuery Scrollbar -->
 <script src="{{ url('assets-dashboard/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js') }}"></script>
 
-<!-- Chart JS -->
-<script src="{{ url('assets-dashboard/js/plugin/chart.js/chart.min.js') }}"></script>
 
 <!-- jQuery Sparkline -->
 <script src="{{ url('assets-dashboard/js/plugin/jquery.sparkline/jquery.sparkline.min.js') }}"></script>

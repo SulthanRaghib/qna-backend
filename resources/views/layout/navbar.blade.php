@@ -2,7 +2,7 @@
 <nav class="navbar navbar-header navbar-header-transparent navbar-expand-lg border-bottom">
     <div class="container-fluid">
         <nav class="navbar navbar-header-left navbar-expand-lg navbar-form nav-search p-0 d-none d-lg-flex gap-5">
-            <a href="{{ route('dashboard') }}" class="logo">
+            <a href="{{ route('kontak.masuk') }}" class="logo">
                 <img src="{{ url('assets/img/logo-infidea.png') }}" alt="navbar brand" class="navbar-brand"
                     height="25" />
             </a>

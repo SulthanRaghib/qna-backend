@@ -109,11 +109,11 @@
                                 @php
                                     $newSort = request('sort') == 'asc' ? 'desc' : 'asc';
                                 @endphp
-                                <a href="{{ route('dashboard', ['sort' => $newSort]) }}" class="text-decoration-none">
+                                <a href="{{ route('kontak.masuk', ['sort' => $newSort]) }}" class="text-decoration-none">
                                     <i
                                         class="{{ request('sort') == 'asc' ? 'bi bi-caret-up-fill text-dark' : 'bi bi-caret-up' }}"></i>
                                 </a>
-                                <a href="{{ route('dashboard', ['sort' => $newSort]) }}" class="text-decoration-none">
+                                <a href="{{ route('kontak.masuk', ['sort' => $newSort]) }}" class="text-decoration-none">
                                     <i
                                         class="{{ request('sort') == 'desc' ? 'bi bi-caret-down-fill text-dark' : 'bi bi-caret-down' }}"></i>
                                 </a>

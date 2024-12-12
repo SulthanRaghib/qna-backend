@@ -30,7 +30,7 @@ class LoginController extends Controller
 
 
         if (auth()->attempt($credentials)) {
-            return redirect()->route('dashboard')->with('success', ' ');
+            return redirect()->route('kontak.masuk')->with('success', ' ');
         } else {
             return redirect()->back()->with('error', 'Email atau password salah');
         }
