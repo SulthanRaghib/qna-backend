@@ -38,8 +38,32 @@ class DashboardController extends Controller
 
     public function statistik()
     {
+        // total pesan berdasarkan bulan
+        $totalPesan = Pesan::selectRaw('MONTH(tanggal_dibuat) as bulan, COUNT(*) as total_pesan')
+            ->groupBy('bulan')
+            ->get();
+
+        // Membuat array untuk semua bulan
+        $bulanArray = [];
+        for ($i = 1; $i <= 12; $i++) {
+            $bulanArray[$i] = 0; // Set default 0 untuk setiap bulan
+        }
+
+        // Mengupdate array bulan dengan data yang ada
+        foreach ($totalPesan as $pesan) {
+            $bulanArray[$pesan->bulan] = $pesan->total_pesan;
+        }
+
+        $totalSemuaPesan = Pesan::count();
+        $totalPesanDibalas = Jawaban::count();
+        $totalPesanBelumDibalas = $totalSemuaPesan - $totalPesanDibalas;
+
         return view('statistik', [
-            'title' => 'Statistik'
+            'title' => 'Statistik',
+            'totalPesan' => $bulanArray,
+            'totalSemuaPesan' => $totalSemuaPesan,
+            'totalPesanDibalas' => $totalPesanDibalas,
+            'totalPesanBelumDibalas' => $totalPesanBelumDibalas
         ]);
     }
 }
