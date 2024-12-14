@@ -3,6 +3,7 @@
 use App\Http\Controllers\Web\DashboardController;
 use App\Http\Controllers\Web\LoginController;
 use App\Http\Controllers\Web\PesanController;
+use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [PesanController::class, 'index'])->name('pesan');
@@ -21,3 +22,4 @@ Route::put('/update-pesan/{id}', [PesanController::class, 'update'])->name('pesa
 Route::delete('/hapus-pesan/{id}', [PesanController::class, 'hapus_pesan'])->name('pesan.delete');
 
 Route::get('/statistik', [DashboardController::class, 'statistik'])->name('statistik');
+Route::post('/kirim-pesan-broadcast', [PesanController::class, 'kirim_pesan_broadcast'])->name('pesan.broadcast')->withoutMiddleware(VerifyCsrfToken::class);

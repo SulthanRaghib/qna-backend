@@ -19,3 +19,12 @@ Laravel 11
 7. Run `php artisan db:seed`
 8. Run `php artisan serve`
 
+## Sweet Alert
+
+https://realrashid.github.io/sweet-alert/install
+
+## Websocket - Broadcasting with Laravel Reverb
+
+1. run `php artisan serve`
+2. run `php artisan reverb:start`
+3. run `php artisan queue:work`

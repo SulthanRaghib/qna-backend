@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Pesan extends Model
 {
+    protected $table = 'pesans';
     protected $fillable = ['subjek', 'pertanyaan', 'tanggal_dibuat', 'status_id', 'user_id'];
 
     public function status()

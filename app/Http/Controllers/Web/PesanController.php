@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Web;
 
+use App\Events\PesanEvent;
 use App\Http\Controllers\Controller;
 use App\Models\Jawaban;
 use App\Models\Pesan;
+use Illuminate\Container\Attributes\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -51,7 +53,8 @@ class PesanController extends Controller
             $data[$key]['id'] = $value->id;
             $data[$key]['subjek'] = $value->subjek;
             $data[$key]['pertanyaan'] = $value->pertanyaan;
-            $data[$key]['tanggal_dibuat'] = Date::parse($value->tanggal_dibuat)->format('d F Y H:i:s');
+            $data[$key]['tanggal_dibuat'] = Date::parse($value->tanggal_dibuat)->setTimezone('Asia/Jakarta')->format('d F Y H:i:s');
+            $data[$key]['status_id'] = $value->status_id;
             $data[$key]['jawaban'] = $jawaban->where('pesan_id', $value->id)->first()->jawaban ?? "Belum Dibalas";
             $data[$key]['user'] = $value->user->username;
         }
@@ -127,5 +130,15 @@ class PesanController extends Controller
 
         // Redirect dengan pesan sukses
         return redirect()->route('kontak.masuk')->with('success-update', 'Pesan berhasil diperbarui!');
+    }
+
+    public function kirim_pesan_broadcast(Request $request)
+    {
+        $tanggal_dibuat = now();
+        $dataPharse = Date::parse($tanggal_dibuat)->setTimezone('Asia/Jakarta')->format('d F Y H:i:s');
+        $status_id = 2;
+        $user_id = 2;
+
+        PesanEvent::dispatch($request->subjek, $request->pertanyaan, $user_id, $status_id, $dataPharse);
     }
 }
